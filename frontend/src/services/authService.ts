@@ -48,6 +48,28 @@ export const authService = {
     return session ? JSON.parse(session) : null;
   },
 
+  // Actualiza el saldo del usuario
+  updateBalance(email: string, amountToAdd: number): User | null {
+    const users = this.getUsers();
+    const userIndex = users.findIndex(u => u.email === email);
+    
+    if (userIndex !== -1) {
+      users[userIndex].balance += amountToAdd;
+      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+      
+      // Actualizar también la sesión activa
+      const sessionUser = { 
+        name: users[userIndex].name, 
+        email: users[userIndex].email, 
+        balance: users[userIndex].balance 
+      };
+      localStorage.setItem(SESSION_KEY, JSON.stringify(sessionUser));
+      
+      return sessionUser;
+    }
+    return null;
+  },
+
   // Cierra sesión
   logout(): void {
     localStorage.removeItem(SESSION_KEY);

@@ -1,0 +1,93 @@
+import React,{ useState } from "react";
+import type { User } from "../types";
+
+interface SnailPayModalProps {
+    user: User;
+    onClose: () => void;
+    onSuccess: () => void;
+}
+
+export const SnailPayModal: React.FC<SnailPayModalProps> = ({ user, onClose, onSuccess }) => {
+    const [cardNumber, setCardNumber] = useState('');
+  const [expirationDate, setExpirationDate] = useState('');
+  const [cvv, setCvv] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [amount, setAmount] = useState<number | ''>('');
+  
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setSuccessMsg('');
+    setLoading(true);
+
+    try {
+      const response = await fetch('http://localhost:3001/api/snailpay/charge', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          cardNumber,
+          expirationDate,
+          cvv,
+          fullName,
+          amount: Number(amount),
+          payerId: 'USER-' + user.email,
+          payerEmail: user.email
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.status === 'approved') {
+        // Regla: Guardar tarjeta y CVV en localStorage con datos ficticios
+        localStorage.setItem('snailpay_last_card', data.cardNumber);
+        localStorage.setItem('snailpay_last_cvv', data.cvv);
+
+        setSuccessMsg(data.status_detail);
+        
+        setTimeout(() => {
+          onSuccess(Number(amount)); // Notificamos al componente padre
+        }, 2000);
+      } else {
+        setError(data.status_detail || 'Error en la transacción');
+      }
+    } catch (err) {
+      setError('Error de conexión con SnailPay. Intente más tarde.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
+      <div style={{ backgroundColor: 'white', padding: '25px', borderRadius: '8px', width: '100%', maxWidth: '400px', fontFamily: 'sans-serif' }}>
+        <h3 style={{ marginTop: 0 }}>Recargar Saldo - SnailPay</h3>
+        
+        {error && <div style={{ padding: '10px', backgroundColor: '#f8d7da', color: '#721c24', borderRadius: '4px', marginBottom: '15px', fontSize: '14px' }}>{error}</div>}
+        {successMsg && <div style={{ padding: '10px', backgroundColor: '#d4edda', color: '#155724', borderRadius: '4px', marginBottom: '15px', fontSize: '14px' }}>{successMsg}</div>}
+
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <input type="text" placeholder="Número de Tarjeta (16 dígitos)" required maxLength={16} value={cardNumber} onChange={e => setCardNumber(e.target.value)} style={{ padding: '8px' }} />
+          
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <input type="date" placeholder="MM/AA" required maxLength={5} value={expirationDate} onChange={e => setExpirationDate(e.target.value)} style={{ padding: '8px', width: '50%' }} />
+            <input type="text" placeholder="CVV" required maxLength={3} value={cvv} onChange={e => setCvv(e.target.value)} style={{ padding: '8px', width: '50%' }} />
+          </div>
+          
+          <input type="text" placeholder="Nombre completo del titular" required value={fullName} onChange={e => setFullName(e.target.value)} style={{ padding: '8px' }} />
+          <input type="number" placeholder="Monto a recargar ($)" required min="1" value={amount} onChange={e => setAmount(Number(e.target.value))} style={{ padding: '8px' }} />
+
+          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '10px' }}>
+            <button type="button" onClick={onClose} disabled={loading} style={{ padding: '8px 16px', backgroundColor: '#6c757d', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Cancelar</button>
+            <button type="submit" disabled={loading} style={{ padding: '8px 16px', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+              {loading ? 'Procesando...' : 'Pagar'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}

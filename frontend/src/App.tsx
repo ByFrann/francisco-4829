@@ -49,7 +49,7 @@ function App() {
             <SnailPayModal
               user={currentUser}
               onClose={() => setIsModalOpen(false)}
-              onSuccess = {handleOpenRechargeSuccess}
+              onSuccess={(amount: number) => handleOpenRechargeSuccess(amount)}
             />
           )}
         </>

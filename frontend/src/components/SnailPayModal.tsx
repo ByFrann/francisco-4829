@@ -5,7 +5,7 @@ import type { User } from "../types";
 interface SnailPayModalProps {
     user: User;
     onClose: () => void;
-    onSuccess: () => void;
+    onSuccess: (amount: number) => void;
 }
 
 // Componente modal para recargar saldo mediante SnailPay

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { User } from '../types';
-import './Dashboard.css'
+import './Dashboard.css';
 import { 
   PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend,
   BarChart, Bar, XAxis, YAxis, CartesianGrid 
@@ -100,7 +100,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ user, onLogout, onOpenRech
                       dataKey="value"
                       stroke="none"
                     >
-                      {betsData.map((entry, index) => (
+                      {betsData.map((_entry, index) => (
                         <Cell key={`cell-${index}`} fill={SKOTE_COLORS[index % SKOTE_COLORS.length]} />
                       ))}
                     </Pie>

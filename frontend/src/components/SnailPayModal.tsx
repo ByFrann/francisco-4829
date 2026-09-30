@@ -32,7 +32,7 @@ export const SnailPayModal: React.FC<SnailPayModalProps> = ({ user, onClose, onS
     // http://localhost:3001/api/snailpay/charge
 
     try {
-      const response = await fetch('https://francisco-backend-qndj.onrender.com/api/snailpay/charge', {
+      const response = await fetch('https://francisco-backend2.onrender.com/api/snailpay/charge', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

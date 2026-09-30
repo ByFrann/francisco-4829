@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { authService } from '../services/authService';
 import type { User } from '../types';
+import './Auth.css'; 
 
+// Definición de las propiedades que el componente Auth recibirá
 interface AuthProps {
   onLogin: (user: User) => void;
 }
@@ -56,29 +58,29 @@ export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
 
   return (
     // Renderizamos la interfaz de usuario según el estado de autenticación
-    <div style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', fontFamily: 'sans-serif' }}>
-      <h2 style={{ textAlign: 'center' }}>{isLogin ? 'Iniciar Sesión' : 'Registro'}</h2>
+    <div className='login-box' >
+      <h2 className='login-title' >{isLogin ? 'Iniciar Sesión' : 'Registro'}</h2>
       
-      {error && <div style={{ color: 'red', marginBottom: '10px' }}>{error}</div>}
-      {success && <div style={{ color: 'green', marginBottom: '10px' }}>{success}</div>}
+      {error && <div className='info-error'>{error}</div>}
+      {success && <div className='info-success'>{success}</div>}
 
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <form className='login-form' onSubmit={handleSubmit} >
         {!isLogin && (
-          <input type="text" placeholder="Nombre completo" required value={name} onChange={(e) => setName(e.target.value)} style={{ padding: '8px', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
+          <input className='login-input' type="text" placeholder="Nombre completo" required value={name} onChange={(e) => setName(e.target.value)} />
         )}
-        <input type="email" placeholder="Correo electrónico" required value={email} onChange={(e) => setEmail(e.target.value)} style={{ padding: '8px', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
-        <input type="password" placeholder="Contraseña" required value={password} onChange={(e) => setPassword(e.target.value)} style={{ padding: '8px', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
+        <input className='login-input' type="email" placeholder="Correo electrónico" required value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input className='login-input' type="password" placeholder="Contraseña" required value={password} onChange={(e) => setPassword(e.target.value)} />
         
         {!isLogin && (
-          <input type="password" placeholder="Confirmar contraseña" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} style={{ padding: '8px', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
+          <input className='login-input' type="password" placeholder="Confirmar contraseña" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
         )}
 
-        <button type="submit" style={{ padding: '10px', backgroundColor: '#556ee6', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+        <button className='login-button' type="submit">
           {isLogin ? 'Ingresar' : 'Registrarse'}
         </button>
       </form>
 
-      <p style={{ textAlign: 'center', marginTop: '15px', cursor: 'pointer', color: '#556ee6' }} onClick={() => { setIsLogin(!isLogin); setError(''); setSuccess(''); }}>
+      <p className='login-link' onClick={() => { setIsLogin(!isLogin); setError(''); setSuccess(''); }}>
         {isLogin ? '¿No tienes cuenta? Regístrate' : '¿Ya tienes cuenta? Inicia sesión'}
       </p>
     </div>

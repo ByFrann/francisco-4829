@@ -58,31 +58,33 @@ export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
 
   return (
     // Renderizamos la interfaz de usuario según el estado de autenticación
-    <div className='login-box' >
-      <h2 className='login-title' >{isLogin ? 'Iniciar Sesión' : 'Registro'}</h2>
-      
-      {error && <div className='info-error'>{error}</div>}
-      {success && <div className='info-success'>{success}</div>}
-
-      <form className='login-form' onSubmit={handleSubmit} >
-        {!isLogin && (
-          <input className='login-input' type="text" placeholder="Nombre completo" required value={name} onChange={(e) => setName(e.target.value)} />
-        )}
-        <input className='login-input' type="email" placeholder="Correo electrónico" required value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input className='login-input' type="password" placeholder="Contraseña" required value={password} onChange={(e) => setPassword(e.target.value)} />
+    <div className='auth-container' >
+      <div className='login-box' >
+        <h2 className='login-title' >{isLogin ? 'Iniciar Sesión' : 'Registro'}</h2>
         
-        {!isLogin && (
-          <input className='login-input' type="password" placeholder="Confirmar contraseña" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-        )}
+        {error && <div className='info-error'>{error}</div>}
+        {success && <div className='info-success'>{success}</div>}
 
-        <button className='login-button' type="submit">
-          {isLogin ? 'Ingresar' : 'Registrarse'}
-        </button>
-      </form>
+        <form className='login-form' onSubmit={handleSubmit} >
+          {!isLogin && (
+            <input className='login-input' type="text" placeholder="Nombre completo" required value={name} onChange={(e) => setName(e.target.value)} />
+          )}
+          <input className='login-input' type="email" placeholder="Correo electrónico" required value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input className='login-input' type="password" placeholder="Contraseña" required value={password} onChange={(e) => setPassword(e.target.value)} />
+          
+          {!isLogin && (
+            <input className='login-input' type="password" placeholder="Confirmar contraseña" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+          )}
 
-      <p className='login-link' onClick={() => { setIsLogin(!isLogin); setError(''); setSuccess(''); }}>
-        {isLogin ? '¿No tienes cuenta? Regístrate' : '¿Ya tienes cuenta? Inicia sesión'}
-      </p>
+          <button className='login-button' type="submit">
+            {isLogin ? 'Ingresar' : 'Registrarse'}
+          </button>
+        </form>
+
+        <p className='login-link' onClick={() => { setIsLogin(!isLogin); setError(''); setSuccess(''); }}>
+          {isLogin ? '¿No tienes cuenta? Regístrate' : '¿Ya tienes cuenta? Inicia sesión'}
+        </p>
+      </div>
     </div>
   );
 };

@@ -68,8 +68,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ user, onLogout, onOpenRech
 
               {/* Tarjeta de saldo */}
               <div className="skote-balance-info">
-                  <Wallet size={16} /><p>Saldo SnailPay</p>
-                <h4>${user.balance.toFixed(2)}</h4>
+                <p>Saldo SnailPay</p>
+                <h4><Wallet size={16} /> ${user.balance.toFixed(2)}</h4>
               </div>
 
               {/* Botón de cargar saldo SnailPay */}

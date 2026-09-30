@@ -8,7 +8,7 @@ interface SnailPayModalProps {
 }
 
 export const SnailPayModal: React.FC<SnailPayModalProps> = ({ user, onClose, onSuccess }) => {
-    const [cardNumber, setCardNumber] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
   const [cvv, setCvv] = useState('');
   const [fullName, setFullName] = useState('');
@@ -73,7 +73,7 @@ export const SnailPayModal: React.FC<SnailPayModalProps> = ({ user, onClose, onS
           <input type="text" placeholder="Número de Tarjeta (16 dígitos)" required maxLength={16} value={cardNumber} onChange={e => setCardNumber(e.target.value)} style={{ padding: '8px' }} />
           
           <div style={{ display: 'flex', gap: '10px' }}>
-            <input type="date" placeholder="MM/AA" required maxLength={5} value={expirationDate} onChange={e => setExpirationDate(e.target.value)} style={{ padding: '8px', width: '50%' }} />
+            <input type="text" placeholder="MM/AA" required maxLength={5} value={expirationDate} onChange={e => setExpirationDate(e.target.value)} style={{ padding: '8px', width: '50%' }} />
             <input type="text" placeholder="CVV" required maxLength={3} value={cvv} onChange={e => setCvv(e.target.value)} style={{ padding: '8px', width: '50%' }} />
           </div>
           

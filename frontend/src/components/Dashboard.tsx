@@ -7,6 +7,7 @@ import {
 } from 'recharts';
 import { Wallet, LogOut, Trophy, PieChart as PieIcon, CreditCard } from 'lucide-react';
 
+// Props del componente Dashboard
 interface DashboardProps {
   user: User;
   onLogout: () => void;
@@ -33,6 +34,7 @@ const snailRacesData = [
 const SKOTE_COLORS = ['#34c38f', '#f46a6a']; // Verde (Éxito) y Rojo (Peligro)
 const BAR_COLOR = '#556ee6'; // Azul Primario Skote
 
+// Componente principal del Dashboard
 export const Dashboard: React.FC<DashboardProps> = ({ user, onLogout, onOpenRecharge }) => {
   return (
     <div className="skote-layout">
@@ -56,8 +58,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ user, onLogout, onOpenRech
                 <h3>¡Bienvenido de nuevo!</h3>
                 <p>Dashboard de Jugador</p>
               </div>
-            
-
+              
+            {/* Sección de información del jugador */}
             <div className="skote-balance-section">
               <div className="skote-balance-info">
                 <p>Jugador Activo</p>

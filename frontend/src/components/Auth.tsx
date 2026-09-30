@@ -6,6 +6,7 @@ interface AuthProps {
   onLogin: (user: User) => void;
 }
 
+// Componente de autenticación que maneja tanto el registro como el inicio de sesión
 export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [name, setName] = useState('');
@@ -15,6 +16,7 @@ export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
+  // Función para manejar el envío del formulario de autenticación
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -39,6 +41,7 @@ export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
         return;
       }
 
+      // Intentar registrar al usuario
       const result = authService.register(name, email, password);
       if (result.success) {
         setSuccess(result.message);
@@ -52,6 +55,7 @@ export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
   };
 
   return (
+    // Renderizamos la interfaz de usuario según el estado de autenticación
     <div style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', fontFamily: 'sans-serif' }}>
       <h2 style={{ textAlign: 'center' }}>{isLogin ? 'Iniciar Sesión' : 'Registro'}</h2>
       

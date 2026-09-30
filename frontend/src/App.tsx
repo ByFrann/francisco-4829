@@ -22,6 +22,7 @@ function App() {
     setCurrentUser(null);
   };
   
+  // Función para manejar la recarga exitosa
   const handleOpenRechargeSuccess = (amount: number) => {
     if (currentUser) {
       const updatedUser = authService.updateBalance(currentUser.email, amount);
@@ -33,6 +34,7 @@ function App() {
   };
 
   return (
+    // Renderizamos la interfaz de usuario según el estado de autenticación
     <div>
       {!currentUser ? (
         <Auth onLogin={(user) => setCurrentUser(user)} />

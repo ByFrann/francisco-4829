@@ -1,12 +1,14 @@
 import React,{ useState } from "react";
 import type { User } from "../types";
 
+//
 interface SnailPayModalProps {
     user: User;
     onClose: () => void;
     onSuccess: () => void;
 }
 
+// Componente modal para recargar saldo mediante SnailPay
 export const SnailPayModal: React.FC<SnailPayModalProps> = ({ user, onClose, onSuccess }) => {
   const [cardNumber, setCardNumber] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
@@ -18,12 +20,14 @@ export const SnailPayModal: React.FC<SnailPayModalProps> = ({ user, onClose, onS
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
+  // Función para manejar el envío del formulario de recarga
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setSuccessMsg('');
     setLoading(true);
 
+    // Manejo de la llamada a la API de SnailPay
     try {
       const response = await fetch('http://localhost:3001/api/snailpay/charge', {
         method: 'POST',
@@ -41,6 +45,7 @@ export const SnailPayModal: React.FC<SnailPayModalProps> = ({ user, onClose, onS
 
       const data = await response.json();
 
+      // Validación de la respuesta de SnailPay
       if (response.ok && data.status === 'approved') {
         // Regla: Guardar tarjeta y CVV en localStorage con datos ficticios
         localStorage.setItem('snailpay_last_card', data.cardNumber);
@@ -62,6 +67,7 @@ export const SnailPayModal: React.FC<SnailPayModalProps> = ({ user, onClose, onS
   };
 
   return (
+    // Renderizamos el modal de recarga de saldo
     <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
       <div style={{ backgroundColor: 'white', padding: '25px', borderRadius: '8px', width: '100%', maxWidth: '400px', fontFamily: 'sans-serif' }}>
         <h3 style={{ marginTop: 0 }}>Recargar Saldo - SnailPay</h3>

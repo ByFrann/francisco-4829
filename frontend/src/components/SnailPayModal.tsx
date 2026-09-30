@@ -66,19 +66,19 @@ export const SnailPayModal: React.FC<SnailPayModalProps> = ({ user, onClose, onS
       <div style={{ backgroundColor: 'white', padding: '25px', borderRadius: '8px', width: '100%', maxWidth: '400px', fontFamily: 'sans-serif' }}>
         <h3 style={{ marginTop: 0 }}>Recargar Saldo - SnailPay</h3>
         
-        {error && <div style={{ padding: '10px', backgroundColor: '#f8d7da', color: '#721c24', borderRadius: '4px', marginBottom: '15px', fontSize: '14px' }}>{error}</div>}
-        {successMsg && <div style={{ padding: '10px', backgroundColor: '#d4edda', color: '#155724', borderRadius: '4px', marginBottom: '15px', fontSize: '14px' }}>{successMsg}</div>}
+        {error && <div style={{ padding: '10px', backgroundColor: '#f8d7da', color: '#721c24', borderRadius: '10px', marginBottom: '15px', fontSize: '14px' }}>{error}</div>}
+        {successMsg && <div style={{ padding: '10px', backgroundColor: '#d4edda', color: '#155724', borderRadius: '10px', marginBottom: '15px', fontSize: '14px' }}>{successMsg}</div>}
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          <input type="text" placeholder="Número de Tarjeta (16 dígitos)" required maxLength={16} value={cardNumber} onChange={e => setCardNumber(e.target.value)} style={{ padding: '8px' }} />
+          <input type="text" placeholder="Número de Tarjeta (16 dígitos)" required maxLength={16} value={cardNumber} onChange={e => setCardNumber(e.target.value)} style={{ padding: '8px', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
           
           <div style={{ display: 'flex', gap: '10px' }}>
-            <input type="text" placeholder="MM/AA" required maxLength={5} value={expirationDate} onChange={e => setExpirationDate(e.target.value)} style={{ padding: '8px', width: '50%' }} />
-            <input type="text" placeholder="CVV" required maxLength={3} value={cvv} onChange={e => setCvv(e.target.value)} style={{ padding: '8px', width: '50%' }} />
+            <input type="text" placeholder="MM/AA" required maxLength={5} value={expirationDate} onChange={e => setExpirationDate(e.target.value)} style={{ padding: '8px', width: '50%', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
+            <input type="text" placeholder="CVV" required maxLength={3} value={cvv} onChange={e => setCvv(e.target.value)} style={{ padding: '8px', width: '50%', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
           </div>
           
-          <input type="text" placeholder="Nombre completo del titular" required value={fullName} onChange={e => setFullName(e.target.value)} style={{ padding: '8px' }} />
-          <input type="number" placeholder="Monto a recargar ($)" required min="1" value={amount} onChange={e => setAmount(Number(e.target.value))} style={{ padding: '8px' }} />
+          <input type="text" placeholder="Nombre completo del titular" required value={fullName} onChange={e => setFullName(e.target.value)} style={{ padding: '8px', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
+          <input type="number" placeholder="Monto a recargar ($)" required min="1" value={amount} onChange={e => setAmount(Number(e.target.value))} style={{ padding: '8px', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
 
           <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '10px' }}>
             <button type="button" onClick={onClose} disabled={loading} style={{ padding: '8px 16px', backgroundColor: '#6c757d', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Cancelar</button>

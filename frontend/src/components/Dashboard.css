@@ -1,0 +1,157 @@
+/* frontend/src/components/Dashboard.css */
+.skote-layout {
+    background-color: #f8f8fb;
+    min-height: 100vh;
+    font-family: 'Inter', Arial, sans-serif;
+    color: #495057;
+  }
+  
+  /* Barra superior (TopBar) */
+  .skote-topbar {
+    background-color: #ffffff;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  }
+  
+  .skote-logo-title {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .skote-logout {
+    color: #f46a6a; /* Rojo peligro */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+  }
+  
+  /* Contenedor principal */
+  .skote-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  
+  /* Tarjeta de Bienvenida y Saldo*/
+  .skote-welcome-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+    overflow: hidden;
+    margin-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .skote-welcome-banner {
+    background-color: rgba(85, 110, 230, 0.1);
+    padding: 24px;
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .skote-welcome-banner h3 {
+    color: #556ee6; /* Azul primario Skote */
+    margin: 0 0 5px 0;
+    font-size: 18px;
+  }
+  
+  .skote-welcome-banner p {
+    color: #556ee6;
+    opacity: 0.8;
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .skote-balance-section {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 2;
+    min-width: 300px;
+  }
+  
+  .skote-balance-info p {
+    margin: 0;
+    font-size: 13px;
+    color: #74788d;
+    font-weight: 500;
+  }
+  
+  .skote-balance-info h4 {
+    margin: 5px 0 0 0;
+    font-size: 22px;
+    color: #495057;
+  }
+  
+  .skote-btn-primary {
+    background-color: #556ee6;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(85, 110, 230, 0.2);
+  }
+  
+  .skote-btn-primary:hover {
+    background-color: #4458b8;
+  }
+  
+  /* Rejilla de Gráficas */
+  .skote-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  
+  .skote-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+    padding: 24px;
+  }
+  
+  .skote-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #495057;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .skote-grid {
+      grid-template-columns: 1fr;
+    }
+    .skote-welcome-card {
+      flex-direction: column;
+    }
+    .skote-balance-section {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+  }

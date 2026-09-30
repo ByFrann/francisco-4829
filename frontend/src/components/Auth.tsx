@@ -60,21 +60,21 @@ export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
 
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         {!isLogin && (
-          <input type="text" placeholder="Nombre completo" required value={name} onChange={(e) => setName(e.target.value)} style={{ padding: '8px' }} />
+          <input type="text" placeholder="Nombre completo" required value={name} onChange={(e) => setName(e.target.value)} style={{ padding: '8px', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
         )}
-        <input type="email" placeholder="Correo electrónico" required value={email} onChange={(e) => setEmail(e.target.value)} style={{ padding: '8px' }} />
-        <input type="password" placeholder="Contraseña" required value={password} onChange={(e) => setPassword(e.target.value)} style={{ padding: '8px' }} />
+        <input type="email" placeholder="Correo electrónico" required value={email} onChange={(e) => setEmail(e.target.value)} style={{ padding: '8px', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
+        <input type="password" placeholder="Contraseña" required value={password} onChange={(e) => setPassword(e.target.value)} style={{ padding: '8px', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
         
         {!isLogin && (
-          <input type="password" placeholder="Confirmar contraseña" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} style={{ padding: '8px' }} />
+          <input type="password" placeholder="Confirmar contraseña" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} style={{ padding: '8px', borderRadius: '10px', border: 'none', backgroundColor: '#f0f2f4'}} />
         )}
 
-        <button type="submit" style={{ padding: '10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+        <button type="submit" style={{ padding: '10px', backgroundColor: '#556ee6', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
           {isLogin ? 'Ingresar' : 'Registrarse'}
         </button>
       </form>
 
-      <p style={{ textAlign: 'center', marginTop: '15px', cursor: 'pointer', color: '#007bff' }} onClick={() => { setIsLogin(!isLogin); setError(''); setSuccess(''); }}>
+      <p style={{ textAlign: 'center', marginTop: '15px', cursor: 'pointer', color: '#556ee6' }} onClick={() => { setIsLogin(!isLogin); setError(''); setSuccess(''); }}>
         {isLogin ? '¿No tienes cuenta? Regístrate' : '¿Ya tienes cuenta? Inicia sesión'}
       </p>
     </div>

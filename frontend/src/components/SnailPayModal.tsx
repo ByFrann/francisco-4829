@@ -28,8 +28,11 @@ export const SnailPayModal: React.FC<SnailPayModalProps> = ({ user, onClose, onS
     setLoading(true);
 
     // Manejo de la llamada a la API de SnailPay
+    // localhost:3001 es el puerto donde corre el backend de SnailPay
+    // http://localhost:3001/api/snailpay/charge
+
     try {
-      const response = await fetch('http://localhost:3001/api/snailpay/charge', {
+      const response = await fetch('https://francisco-backend-qndj.onrender.com/api/snailpay/charge', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
